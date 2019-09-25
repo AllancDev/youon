@@ -15,8 +15,8 @@ if(isset($_POST['Mes'])) {$filtro2 = ($_POST['Mes']);} else {$filtro2 = 1;} #fil
     FROM $tabela";
 
 $params = array();
-$options =array("Scrollable" => SQLSRV_CURSOR_KEYSET);
-$stmt = mysql_query( $conn, $sql, $params, $options);
+$options = "";
+$stmt = mysqli_query( $conn, $sql, $params, $options);
 if( $stmt === false) {
     die( print_r( sqlsrv_errors(), true) );
 }
