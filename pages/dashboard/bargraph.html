@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ChartJS - BarGraph</title>
+		<style type="text/css">
+			#chart-container {
+				width: 640px;
+				height: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chart-container">
+			<canvas id="vendasdia"></canvas>
+		</div>
+
+		<!-- javascript -->
+		<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+		
+		<script type="text/javascript" src="js/Chart.min.js"></script>
+		<script>
+		$(document).ready(function(){
+				$.ajax({
+					url: "http://localhost:8181/YouOn/pages/dashboard/data.php",
+					method: "GET",
+					success: function(data) {
+						console.log(data);
+						var dia = [];
+						var valor = [];
+			
+						for(var i in data) {
+							dia.push(data[i].dia);
+							valor.push(data[i].valor);
+						}
+			
+						var chartdata = {
+							labels: dia,
+							datasets : [
+								{
+									label: 'Total',
+									backgroundColor: 'rgba(200, 200, 200, 0.75)',
+									borderColor: 'rgba(200, 200, 200, 0.75)',
+									hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+									hoverBorderColor: 'rgba(200, 200, 200, 1)',
+									data: valor
+								}
+							]
+						};
+			
+						var ctx = $("#vendasdia");
+			
+						var barGraph = new Chart(ctx, {
+							type: 'bar',
+							data: chartdata
+						});
+					},
+					error: function(data) {
+						console.log(data);
+					}
+				});
+			});</script>
+	</body>
+</html>
