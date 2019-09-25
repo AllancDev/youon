@@ -16,9 +16,9 @@ if(isset($_POST['Mes'])) {$filtro2 = ($_POST['Mes']);} else {$filtro2 = 1;} #fil
 
 $params = array();
 $options = "";
-$stmt = mysqli_query( $conn, $sql, $params, $options);
+$stmt = mysqli_query( $conn, $sql, $params);
 if( $stmt === false) {
-    die( print_r( sqlsrv_errors(), true) );
+    die('Erro: Não foi possivel iniciar conexão.');
 }
 
 $numRegistros = mysql_num_rows($stmt);
